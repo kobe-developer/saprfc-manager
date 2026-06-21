@@ -47,7 +47,7 @@ class SapRfcQuery implements SapQueryInterface
       return app(Pipeline::class)
          ->send($this)
          ->through(config('saprfc.middleware', []))
-         ->then(fn($query) => $query->runCoreExecution());
+         ->then(fn(SapRfcQuery $query) => $query->runCoreExecution());
    }
 
    public function getFunctionDescription(): array
@@ -66,7 +66,7 @@ class SapRfcQuery implements SapQueryInterface
       return $connection->getAttributes();
    }
 
-   public function runCoreExecution(): SapResult
+   private function runCoreExecution(): SapResult
    {
       event(new SapRfcExecuting($this->functionName, $this->params));
 

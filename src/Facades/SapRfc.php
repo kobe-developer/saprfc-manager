@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Facade;
  * @method static \SapRfcManager\SapRfcQuery on(string $environment)
  * @method static \SapRfcManager\SapRfcQuery call(string $functionName)
  * @method static \SapRfcManager\SapRfcQuery with(array $params)
+ * @method static \SapRfcManager\SapRfcQuery getFunctionDescription()
+ * @method static \SapRfcManager\SapRfcQuery getAttributes()
  */
 class SapRfc extends Facade
 {
