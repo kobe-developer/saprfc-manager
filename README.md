@@ -1,4 +1,4 @@
-# SAP RFC Manager - Production-Ready Laravel SAP Integration Package
+# SAP RFC Manager
 
 A robust, enterprise-grade Laravel package for seamless SAP NW RFC (Remote Function Call) integration with built-in resilience patterns, observability, and advanced connection management.
 
