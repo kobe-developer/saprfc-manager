@@ -207,8 +207,8 @@ This creates `config/saprfc.php` with default configuration.
 return [
     // Default environment and router
     'default' => [
-        'router' => 'bisnet',        // Primary router
-        'connection' => 'default',   // Default environment
+        'router' => env('SAP_DEFAULT_ROUTER','bisnet'),        // Primary router
+        'connection' => env('SAP_DEFAULT_CONNECTION', 'default'),   // Default environment
     ],
 
     // Retry configuration
@@ -219,8 +219,8 @@ return [
 
     // SAP Router definitions (for connection string building)
     'routers' => [
-        'bisnet' => '/H/117.102.101.194/S/3299/W/K0b32018',
-        'iforte'  => '/H/103.164.113.122/S/3299/W/K0b32018',
+        'bisnet' => env('SAP_BISNET_ROUTER', '/H/127.0.0.1/S/4600/W/SAP_DEFAULT'),
+        'iforte' => env('SAP_IFORTE_ROUTER', '/H/127.0.0.1/S/4603/W/SAP_DEFAULT'),
     ],
 
     // Named connections (environments)
