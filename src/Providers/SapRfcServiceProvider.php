@@ -2,6 +2,7 @@
 
 namespace SapRfcManager\Providers;
 
+use Illuminate\Pipeline\Pipeline;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use SapRfcManager\Contracts\SapConnectionManagerInterface;
@@ -24,7 +25,8 @@ class SapRfcServiceProvider extends ServiceProvider
          return new SapRfcQuery(
             $app->make(SapConnectionManagerInterface::class),
             $app->make(CircuitBreaker::class),
-            $app->make(MetricsCollector::class)
+            $app->make(MetricsCollector::class),
+            $app->make(Pipeline::class)
          );
       });
    }

@@ -11,6 +11,7 @@ use SapRfcManager\Events\SapRfcExecuted;
 use SapRfcManager\Events\SapRfcExecuting;
 use SapRfcManager\Facades\SapRfc;
 use SapRfcManager\Observability\MetricsCollector;
+use SapRfcManager\Observability\PrometheusExporter;
 
 beforeEach(function () {
    Event::fake();
@@ -71,6 +72,13 @@ it('stores and retrieves data correctly', function () {
 });
 
 it('exposes metrics via controller', function () {
+   $exporter = Mockery::mock(PrometheusExporter::class);
+   $exporter->shouldReceive('export')
+      ->once()
+      ->andReturn("sap_rfc_requests_total{env=\"dev\",function=\"TEST\",status=\"success\"} 1");
+
+   $this->app->instance(PrometheusExporter::class, $exporter);
+
    $this->get('/metrics/sap')
       ->assertStatus(200)
       ->assertSee('sap_rfc_requests_total');
