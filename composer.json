@@ -1,5 +1,5 @@
 {
-   "name": "andridev/saprfc-manager",
+   "name": "kobe-developer/saprfc-manager",
    "version": "1.0.0",
    "description": "Laravel package for SAP NW RFC integration with Circuit Breaker and Octane support",
    "type": "library",
