@@ -1,0 +1,47 @@
+{
+   "name": "andridev/saprfc-manager",
+   "version": "1.0.0",
+   "description": "Laravel package for SAP NW RFC integration with Circuit Breaker and Octane support",
+   "type": "library",
+   "require": {
+      "php": "^8.2",
+      "illuminate/support": "^11.0 || ^12.0 || ^13.0",
+      "illuminate/pipeline": "^11.0 || ^12.0 || ^13.0"
+   },
+   "require-dev": {
+      "pestphp/pest": "^2.0",
+      "pestphp/pest-plugin-laravel": "^2.4",
+      "mockery/mockery": "^1.6",
+      "orchestra/testbench": "^9.0"
+   },
+   "autoload": {
+      "psr-4": {
+         "SapRfcManager\\": "src/"
+      }
+   },
+   "autoload-dev": {
+      "psr-4": {
+         "SapRfcManager\\Tests\\": "tests/"
+      }
+   },
+   "extra": {
+      "laravel": {
+         "providers": [
+            "SapRfcManager\\Providers\\SapRfcServiceProvider"
+         ],
+         "aliases": {
+            "SapRfc": "SapRfcManager\\Facades\\SapRfc"
+         }
+      }
+   },
+   "config": {
+      "policy": {
+         "advisories": {
+            "block": false
+         }
+      },
+      "allow-plugins": {
+         "pestphp/pest-plugin": true
+      }
+   }
+}
