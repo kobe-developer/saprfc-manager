@@ -205,60 +205,49 @@ This creates `config/saprfc.php` with default configuration.
 <?php
 
 return [
-    // Default environment and router
     'default' => [
-        'router' => env('SAP_DEFAULT_ROUTER','bisnet'),        // Primary router
-        'connection' => env('SAP_DEFAULT_CONNECTION', 'default'),   // Default environment
+        'router' => env('SAP_ROUTER', 'bisnet'),
+        'connection' => env('SAP_CONNECTION', 'default'),
     ],
 
-    // Retry configuration
+    'log_channel' => env('LOG_CHANNEL', 'stack'),
+
     'retry' => [
-        'times' => 3,                // Number of retry attempts
-        'backoff_ms' => 500,         // Delay between retries (exponential)
+        'times' => env('SAP_RETRY_TIMES', 3),
+        'backoff_ms' => env('SAP_RETRY_BACKOFF_MS', 500),
     ],
 
-    // SAP Router definitions (for connection string building)
     'routers' => [
-        'bisnet' => env('SAP_BISNET_ROUTER', '/H/127.0.0.1/S/4600/W/SAP_DEFAULT'),
-        'iforte' => env('SAP_IFORTE_ROUTER', '/H/127.0.0.1/S/4603/W/SAP_DEFAULT'),
+        'bisnet' => env('SAP_ROUTER_BISNET', '/H/127.0.0.1/S/1200/W/SAP_DEFAULT'),
+        'iforte' => env('SAP_ROUTER_IFORTE', '/H/127.0.0.2/S/1200/W/SAP_DEFAULT'),
     ],
 
-    // Named connections (environments)
     'connections' => [
         'default' => [
-            'ashost'  => env('SAP_ASHOST', 'sap-server.example.com'),
-            'sysnr'   => env('SAP_SYSNR', '01'),
-            'client'  => env('SAP_CLIENT', '100'),
-            'user'    => env('SAP_USER', 'SYSTEM'),
-            'passwd'  => env('SAP_PASSWD', 'password'),
-        ],
-        'production' => [
-            'ashost'  => env('SAP_PROD_ASHOST'),
-            'sysnr'   => env('SAP_PROD_SYSNR'),
-            'client'  => env('SAP_PROD_CLIENT'),
-            'user'    => env('SAP_PROD_USER'),
-            'passwd'  => env('SAP_PROD_PASSWD'),
+            'ashost' => env('SAP_ASHOST', 'sap-server.example.com'),
+            'sysnr' => env('SAP_SYSNR', '00'),
+            'client' => env('SAP_CLIENT', '100'),
+            'sid' => env('SAP_SID', 'DEFAUT'),
+            'user' => env('SAP_USER', 'SYSTEM'),
+            'passwd' => env('SAP_PASSWD', 'PASSWORD'),
         ],
     ],
 
-    // Middleware pipeline for request transformation
     'middleware' => [
-        // Add custom middleware classes here
+        //
     ],
 
-    // Circuit breaker configuration
     'circuit_breaker' => [
-        'threshold' => 5,              // Failures before opening circuit
-        'timeout_seconds' => 60,       // Time circuit stays open
+        'threshold' => 5,
+        'timeout_seconds' => 60,
     ],
 
-    // Metrics and observability
     'metrics' => [
         'enabled' => true,
         'expose_route' => true,
-        'route_path' => '/metrics/sap',  // Prometheus metrics endpoint
+        'route_path' => '/metrics/sap',
     ],
-];
+];;
 ```
 
 ### Environment Variables (.env)

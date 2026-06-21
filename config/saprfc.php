@@ -2,11 +2,11 @@
 
 return [
    'default' => [
-      'router' => env('SAP_SAPROUTER', 'bisnet'),
+      'router' => env('SAP_ROUTER', 'bisnet'),
       'connection' => env('SAP_CONNECTION', 'default'),
    ],
 
-   'log_channel' => env('SAP_LOG_CHANNEL', 'stack'),
+   'log_channel' => env('LOG_CHANNEL', 'stack'),
 
    'retry' => [
       'times' => env('SAP_RETRY_TIMES', 3),
@@ -14,18 +14,18 @@ return [
    ],
 
    'routers' => [
-      'bisnet' => env('SAP_SAPROUTER_BISNET'),
-      'iforte' => env('SAP_SAPROUTER_IFORTE'),
+      'bisnet' => env('SAP_ROUTER_BISNET', '/H/127.0.0.1/S/1200/W/SAP_DEFAULT'),
+      'iforte' => env('SAP_ROUTER_IFORTE', '/H/127.0.0.2/S/1200/W/SAP_DEFAULT'),
    ],
 
    'connections' => [
       'default' => [
-         'ashost' => env('SAP_ASHOST'),
-         'sysnr' => env('SAP_SYSNR'),
-         'client' => env('SAP_CLIENT'),
-         'sid' => env('SAP_SID'),
-         'user' => env('SAP_USER'),
-         'passwd' => env('SAP_PASSWD'),
+         'ashost' => env('SAP_ASHOST', 'sap-host.server.com'),
+         'sysnr' => env('SAP_SYSNR', '00'),
+         'client' => env('SAP_CLIENT', '100'),
+         'sid' => env('SAP_SID', 'DEFAUT'),
+         'user' => env('SAP_USER', 'SYSTEM'),
+         'passwd' => env('SAP_PASSWD', 'PASSWORD'),
       ],
    ],
 
